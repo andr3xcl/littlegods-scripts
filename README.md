@@ -1,2 +1,0 @@
-# littlegods-scripts
-
