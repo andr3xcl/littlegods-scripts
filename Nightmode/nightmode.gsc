@@ -1447,6 +1447,7 @@ onPlayerSay()
                 break;
             case "filter":
             case "fl":
+            case "f":
                 if(isDefined(args[1]))
                 {
                     if(player.nightfix > 0 && player.nightfix <= 1)
@@ -1465,6 +1466,7 @@ onPlayerSay()
                 }
                 break;
             case "night":
+            case "ng":
             case "n":
                 if(isDefined(args[1]))
                 {
@@ -1484,11 +1486,13 @@ onPlayerSay()
                 }
                 break;
             case "fog":
+            case "fg":
             case "f":
                 player thread fog();
                 break;
             case "command":
             case "cd":
+            case "c":
                 player thread helpcommand();
                 break;
             case "lang":
