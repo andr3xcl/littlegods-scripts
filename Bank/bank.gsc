@@ -6,9 +6,9 @@
 #include scripts\zm\chat;
 
 
-//====================================================================================
-// SISTEMA DE BANCO GLOBAL
-//====================================================================================
+
+
+
 
 get_bank_balance(player)
 {
@@ -60,14 +60,14 @@ bank_deposit(player, amount)
             player iPrintlnBold("^1Error al acceder al banco");
         else
             player iPrintlnBold("^1Error accessing bank");
-        // Devolver puntos al jugador
+        
         player.score += amount;
         return;
     }
     
     current_time = getTime();
 
-    // Escribir datos del banco
+    
     fs_write(file, "================================\n");
     fs_write(file, "CUENTA BANCARIA\n");
     fs_write(file, "================================\n");
@@ -89,7 +89,7 @@ bank_deposit(player, amount)
         player iPrintlnBold("^2Deposited ^7" + amount + "^2 points. Balance: ^7" + new_balance);
 }
 
-// Función auxiliar para reemplazar líneas en el contenido
+
 replace_line(content, prefix, new_line)
 {
     lines = strTok(content, "\n");
@@ -114,10 +114,10 @@ replace_line(content, prefix, new_line)
     return result;
 }
 
-// Función para obtener GUID de un jugador por nombre
+
 get_player_guid_by_name(player_name)
 {
-    // Primero buscar si el jugador está online
+    
     foreach (player in level.players)
     {
         if (isDefined(player) && isDefined(player.name) &&
@@ -127,11 +127,11 @@ get_player_guid_by_name(player_name)
         }
     }
 
-    // Si no está online, buscar en el archivo de GUIDs
-    // Crear nombre de archivo seguro (igual que en save_player_guid)
+    
+    
     safe_name = player_name;
 
-    // Reemplazar caracteres problemáticos en el nombre del archivo
+    
     safe_name = replace_string(safe_name, " ", "_");
     safe_name = replace_string(safe_name, "[", "");
     safe_name = replace_string(safe_name, "]", "");
@@ -159,7 +159,7 @@ get_player_guid_by_name(player_name)
             guid = fs_read(file, file_size);
             fs_fclose(file);
 
-            // Limpiar posibles caracteres de nueva línea
+            
             guid = replace_string(guid, "\n", "");
             guid = replace_string(guid, "\r", "");
 
@@ -172,7 +172,7 @@ get_player_guid_by_name(player_name)
 
 get_bank_balance_with_id(player_id)
 {
-    filename = "bank/" + player_id + ".txt"; // directory path
+    filename = "bank/" + player_id + ".txt"; 
 
 
     if (!fs_testfile(filename))
@@ -197,7 +197,7 @@ get_bank_balance_with_id(player_id)
         line = lines[i];
         if (isSubStr(line, "Balance: "))
         {
-            balance_str = getSubStr(line, 9); // "Balance: " tiene 9 caracteres
+            balance_str = getSubStr(line, 9); 
             return int(balance_str);
         }
     }
@@ -205,7 +205,7 @@ get_bank_balance_with_id(player_id)
     return 0;
 }
 
-// Función para depositar todo el dinero
+
 bank_deposit_all(player)
 {
     amount = player.score;
@@ -222,7 +222,7 @@ bank_deposit_all(player)
     bank_deposit(player, amount);
 }
 
-// Función para retirar puntos del banco
+
 bank_withdraw(player, amount)
 {
     if (!isDefined(amount) || amount <= 0)
@@ -234,10 +234,10 @@ bank_withdraw(player, amount)
         return;
     }
 
-    // Obtener identificador del jugador (GUID directo)
+    
     player_id = player getGuid();
 
-    // Obtener balance actual usando el mismo player_id
+    
     current_balance = get_bank_balance_with_id(player_id);
 
     if (current_balance < amount)
@@ -251,13 +251,13 @@ bank_withdraw(player, amount)
 
     filename = "bank/" + player_id + ".txt";
 
-    // Calcular nuevo balance
+    
     new_balance = current_balance - amount;
 
-    // Agregar puntos al jugador
+    
     player.score += amount;
 
-    // Actualizar archivo
+    
     file = fs_fopen(filename, "write");
 
     if (!isDefined(file))
@@ -266,15 +266,15 @@ bank_withdraw(player, amount)
             player iPrintlnBold("^1Error al acceder al banco");
         else
             player iPrintlnBold("^1Error accessing bank");
-        // Quitar puntos del jugador
+        
         player.score -= amount;
         return;
     }
     
-    // Obtener fecha/hora
+    
     current_time = getTime();
 
-    // Escribir datos actualizados
+    
     fs_write(file, "================================\n");
     fs_write(file, "CUENTA BANCARIA\n");
     fs_write(file, "================================\n");
@@ -296,10 +296,10 @@ bank_withdraw(player, amount)
         player iPrintlnBold("^2Withdrew ^7" + amount + "^2 points. Remaining balance: ^7" + new_balance);
 }
 
-// Función para retirar todo el dinero del banco
+
 bank_withdraw_all(player)
 {
-    // Obtener identificador del jugador (GUID directo)
+    
     player_id = player getGuid();
 
     current_balance = get_bank_balance_with_id(player_id);
@@ -316,7 +316,7 @@ bank_withdraw_all(player)
     bank_withdraw(player, current_balance);
 }
 
-// Función para pagar a otro jugador en partida
+
 bank_pay_player(payer, receiver_name, amount)
 {
     if (!isDefined(amount) || amount <= 0)
@@ -337,7 +337,7 @@ bank_pay_player(payer, receiver_name, amount)
         return;
     }
 
-    // Buscar al receptor por nombre
+    
     receiver = undefined;
     foreach (player in level.players)
     {
@@ -367,11 +367,11 @@ bank_pay_player(payer, receiver_name, amount)
         return;
     }
 
-    // Realizar la transacción
+    
     payer.score -= amount;
     receiver.score += amount;
 
-    // Feedback a ambos jugadores
+    
     if (payer.valuelang == 0)
     {
         payer iPrintlnBold("^2Pagaste ^7" + amount + "^2 puntos a ^7" + receiver.name);
@@ -384,7 +384,7 @@ bank_pay_player(payer, receiver_name, amount)
     }
 }
 
-// Función para depositar directamente al banco de otro jugador (por GUID)
+
 bank_pay_to_guid(payer, target_guid, amount)
 {
     if (!isDefined(amount) || amount <= 0)
@@ -405,7 +405,7 @@ bank_pay_to_guid(payer, target_guid, amount)
         return;
     }
 
-    // Verificar que no sea el mismo GUID
+    
     payer_guid_str = "" + payer getGuid();
     target_guid_str = "" + target_guid;
     if (target_guid_str == payer_guid_str)
@@ -417,7 +417,7 @@ bank_pay_to_guid(payer, target_guid, amount)
         return;
     }
 
-    // Verificar si el archivo existe
+    
     filename = "bank/" + target_guid + ".txt";
     if (!fs_testfile(filename))
     {
@@ -428,7 +428,7 @@ bank_pay_to_guid(payer, target_guid, amount)
         return;
     }
 
-    // Leer contenido actual
+    
     existing_file = fs_fopen(filename, "read");
     if (!isDefined(existing_file))
     {
@@ -443,27 +443,27 @@ bank_pay_to_guid(payer, target_guid, amount)
     content = fs_read(existing_file, file_size);
     fs_fclose(existing_file);
 
-    // Extraer el nombre del jugador del archivo
-    player_name = "Jugador " + target_guid; // Default
+    
+    player_name = "Jugador " + target_guid; 
     lines = strTok(content, "\n");
     for (i = 0; i < lines.size; i++)
     {
         line = lines[i];
         if (isSubStr(line, "Jugador: "))
         {
-            player_name = getSubStr(line, 9); // "Jugador: " tiene 9 caracteres
+            player_name = getSubStr(line, 9); 
             break;
         }
     }
 
-    // Obtener balance actual y calcular nuevo
+    
     current_balance = get_bank_balance_with_id(target_guid);
     new_balance = current_balance + amount;
 
-    // Actualizar solo el balance
+    
     updated_content = replace_line(content, "Balance:", "Balance: " + new_balance);
 
-    // Escribir archivo actualizado
+    
     file = fs_fopen(filename, "write");
     if (isDefined(file))
     {
@@ -479,10 +479,10 @@ bank_pay_to_guid(payer, target_guid, amount)
         return;
     }
 
-    // Descontar puntos del pagador
+    
     payer.score -= amount;
 
-    // Mensaje solo para el remitente
+    
     if (payer.valuelang == 0)
         payer iPrintlnBold("^2Depositaste ^7" + amount + "^2 puntos al banco de ^7" + player_name);
     else

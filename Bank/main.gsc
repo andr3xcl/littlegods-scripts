@@ -35,10 +35,10 @@ onPlayerSpawned()
     for (;;)
     {
         self waittill("spawned_player");
-        // INICIALIZACIÓN DE THREAD
-        self.valuelang = 1; //Ingles = 1//Español = 0
+        
+        self.valuelang = 1; 
 
-        // Guardar GUID del jugador automáticamente
+        
         self thread save_player_guid();
     }
 }
@@ -47,16 +47,16 @@ save_player_guid()
 {
     self endon("disconnect");
 
-    // Esperar un poco para asegurar que el jugador esté completamente inicializado
+    
     wait 1;
 
     if (!isDefined(self.name) || self.name == "")
         return;
 
-    // Crear nombre de archivo seguro (reemplazar caracteres problemáticos)
+    
     safe_name = self.name;
 
-    // Reemplazar caracteres problemáticos en el nombre del archivo
+    
     safe_name = replace_string(safe_name, " ", "_");
     safe_name = replace_string(safe_name, "[", "");
     safe_name = replace_string(safe_name, "]", "");
@@ -75,7 +75,7 @@ save_player_guid()
 
     filename = "guids/" + safe_name + ".txt";
 
-    // Crear directorio si no existe (aunque fs_fopen debería crearlo)
+    
     file = fs_fopen(filename, "write");
     if (isDefined(file))
     {
