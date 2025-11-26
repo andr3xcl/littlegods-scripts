@@ -10,6 +10,112 @@
 
 
 
+
+
+
+
+
+bigint_add(a, b)
+{
+    
+    a = "" + a;
+    b = "" + b;
+
+    res = "";
+    carry = 0;
+    
+    i = a.size - 1;
+    j = b.size - 1;
+
+    while (i >= 0 || j >= 0 || carry > 0)
+    {
+        digitA = 0;
+        if (i >= 0)
+        {
+            digitA = int(a[i]);
+            i--;
+        }
+
+        digitB = 0;
+        if (j >= 0)
+        {
+            digitB = int(b[j]);
+            j--;
+        }
+
+        sum = digitA + digitB + carry;
+        carry = int(sum / 10);
+        res = (sum % 10) + res;
+    }
+
+    return res;
+}
+
+bigint_sub(a, b)
+{
+    
+    a = "" + a;
+    b = "" + b;
+
+    res = "";
+    borrow = 0;
+
+    i = a.size - 1;
+    j = b.size - 1;
+
+    while (i >= 0)
+    {
+        digitA = int(a[i]);
+        digitB = 0;
+        
+        if (j >= 0)
+        {
+            digitB = int(b[j]);
+            j--;
+        }
+
+        digitA -= borrow;
+
+        if (digitA < digitB)
+        {
+            digitA += 10;
+            borrow = 1;
+        }
+        else
+        {
+            borrow = 0;
+        }
+
+        res = (digitA - digitB) + res;
+        i--;
+    }
+
+    
+    while (res.size > 1 && res[0] == "0")
+    {
+        res = getSubStr(res, 1);
+    }
+
+    return res;
+}
+
+bigint_compare(a, b)
+{
+    a = "" + a;
+    b = "" + b;
+
+    if (a.size > b.size) return 1;
+    if (a.size < b.size) return -1;
+
+    for (i = 0; i < a.size; i++)
+    {
+        if (int(a[i]) > int(b[i])) return 1;
+        if (int(a[i]) < int(b[i])) return -1;
+    }
+
+    return 0;
+}
+
 get_bank_balance(player)
 {
     player_id = player getGuid();
@@ -46,7 +152,7 @@ bank_deposit(player, amount)
     current_balance = get_bank_balance_with_id(player_id);
 
 
-    new_balance = current_balance + amount;
+    new_balance = bigint_add(current_balance, amount);
 
 
     player.score -= amount;
@@ -174,17 +280,16 @@ get_bank_balance_with_id(player_id)
 {
     filename = "bank/" + player_id + ".txt"; 
 
-
     if (!fs_testfile(filename))
     {
-        return 0;
+        return "0"; 
     }
 
     file = fs_fopen(filename, "read");
 
     if (!isDefined(file))
     {
-        return 0;
+        return "0"; 
     }
 
     file_size = fs_length(file);
@@ -198,11 +303,13 @@ get_bank_balance_with_id(player_id)
         if (isSubStr(line, "Balance: "))
         {
             balance_str = getSubStr(line, 9); 
-            return int(balance_str);
+            
+            
+            return balance_str; 
         }
     }
 
-    return 0;
+    return "0"; 
 }
 
 
@@ -235,12 +342,35 @@ bank_withdraw(player, amount)
     }
 
     
+    score_limit = 1000000;
+    if (player.score >= score_limit)
+    {
+        if (player.valuelang == 0)
+            player iPrintlnBold("^1Ya has llegado al límite de puntos (1,000,000)");
+        else
+            player iPrintlnBold("^1Max points reached (1,000,000)");
+        return;
+    }
+
+    if (player.score + amount > score_limit)
+    {
+        amount = score_limit - player.score;
+        if (player.valuelang == 0)
+            player iPrintlnBold("^3Ajustando retiro para llegar al límite de puntos");
+        else
+            player iPrintlnBold("^3Adjusting withdrawal to reach point limit");
+    }
+
+    
     player_id = player getGuid();
 
     
+    
     current_balance = get_bank_balance_with_id(player_id);
 
-    if (current_balance < amount)
+    
+    
+    if (bigint_compare(current_balance, amount) == -1)
     {
         if (player.valuelang == 0)
             player iPrintlnBold("^1No tienes suficientes puntos en el banco");
@@ -252,7 +382,7 @@ bank_withdraw(player, amount)
     filename = "bank/" + player_id + ".txt";
 
     
-    new_balance = current_balance - amount;
+    new_balance = bigint_sub(current_balance, amount);
 
     
     player.score += amount;
@@ -300,11 +430,12 @@ bank_withdraw(player, amount)
 bank_withdraw_all(player)
 {
     
+    
     player_id = player getGuid();
 
     current_balance = get_bank_balance_with_id(player_id);
 
-    if (current_balance <= 0)
+    if (current_balance == "0")
     {
         if (player.valuelang == 0)
             player iPrintlnBold("^1No tienes puntos en el banco");
@@ -313,7 +444,20 @@ bank_withdraw_all(player)
         return;
     }
 
-    bank_withdraw(player, current_balance);
+    amount_to_withdraw = 0;
+    limit = 1000000;
+
+    
+    if (bigint_compare(current_balance, limit) == 1)
+    {
+        amount_to_withdraw = limit;
+    }
+    else
+    {
+        amount_to_withdraw = int(current_balance);
+    }
+
+    bank_withdraw(player, amount_to_withdraw);
 }
 
 
@@ -458,7 +602,7 @@ bank_pay_to_guid(payer, target_guid, amount)
 
     
     current_balance = get_bank_balance_with_id(target_guid);
-    new_balance = current_balance + amount;
+    new_balance = bigint_add(current_balance, amount);
 
     
     updated_content = replace_line(content, "Balance:", "Balance: " + new_balance);
