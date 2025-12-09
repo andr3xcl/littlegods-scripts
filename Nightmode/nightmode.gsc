@@ -9,6 +9,20 @@
 #include maps\mp\gametypes_zm\_hostmigration;
 
 
+replace_string(str, find, replace)
+{
+    result = "";
+    for (i = 0; i < str.size; i++)
+    {
+        char = str[i];
+        if (char == find)
+            result += replace;
+        else
+            result += char;
+    }
+    return result;
+}
+
 init_lang_texts()
 {
     
@@ -19,7 +33,8 @@ init_lang_texts()
     level.lang_texts[1]["DARKNESS_ADJUSTED"] = "The darkness has been adjusted ";
     level.lang_texts[1]["VALID_CONFIG_RANGE"] = "The valid configuration is from 4.5 to 10";
     level.lang_texts[1]["FILTER_ACTIVATED"] = "Filter activated: ";
-    level.lang_texts[1]["AVAILABLE_FILTERS"] = "Available filters from 0 to 35";
+    level.lang_texts[1]["AVAILABLE_FILTERS"] = "Available filters from 0 to 36";
+    level.lang_texts[1]["DYNAMIC_MODE"] = "Dynamic Night Mode activated";
     level.lang_texts[1]["NIGHT_MODE_ACTIVATED"] = "Night mode activated";
     level.lang_texts[1]["LANG_SET_ENGLISH"] = "Language set to: English";
     level.lang_texts[1]["LANG_SET_SPANISH"] = "Language set to: Spanish";
@@ -30,7 +45,7 @@ init_lang_texts()
     level.lang_texts[1]["HELP_COMMAND_TITLE"] = "^7Help command";
     level.lang_texts[1]["HELP_NIGHT_ON"] = "^3#^4night on ^7<- Activate Night mode, default filter ^20";
     level.lang_texts[1]["HELP_NIGHT_DISABLE"] = "^3#^4night d or disable ^7<- disable night";
-    level.lang_texts[1]["HELP_FILTER"] = "^3#^4filter ^20^7 to ^235 ^7<- activate filter";
+    level.lang_texts[1]["HELP_FILTER"] = "^3#^4filter ^20^7 to ^236 ^7<- activate filter";
     level.lang_texts[1]["HELP_VALUE_NIGHT"] = "^3#^4vanight ^7or ^3#^4valuenight ^24.5 ^7or ^210 ^7<- adjust night dvar";
     level.lang_texts[1]["HELP_FOG"] = "^3#^4fog ^7<- disable or activate fog";
     level.lang_texts[1]["HELP_LANG"] = "^3#^4lang ^71^7,^72^7,^73 ^7<- change language (1-English, 2-Spanish, 3-Portuguese)";
@@ -43,7 +58,8 @@ init_lang_texts()
     level.lang_texts[2]["DARKNESS_ADJUSTED"] = "La oscuridad ha sido ajustada ";
     level.lang_texts[2]["VALID_CONFIG_RANGE"] = "La configuración válida es de 4.5 a 10";
     level.lang_texts[2]["FILTER_ACTIVATED"] = "Filtro activado: ";
-    level.lang_texts[2]["AVAILABLE_FILTERS"] = "Filtros disponibles del 0 al 35";
+    level.lang_texts[2]["AVAILABLE_FILTERS"] = "Filtros disponibles del 0 al 36";
+    level.lang_texts[2]["DYNAMIC_MODE"] = "Modo Noche Dinámico activado";
     level.lang_texts[2]["NIGHT_MODE_ACTIVATED"] = "Modo noche activado";
     level.lang_texts[2]["LANG_SET_ENGLISH"] = "Idioma establecido: Inglés";
     level.lang_texts[2]["LANG_SET_SPANISH"] = "Idioma establecido: Español";
@@ -54,7 +70,7 @@ init_lang_texts()
     level.lang_texts[2]["HELP_COMMAND_TITLE"] = "^7Comandos de ayuda";
     level.lang_texts[2]["HELP_NIGHT_ON"] = "^3#^4night on ^7<- Activar Modo Noche, filtro por defecto ^20";
     level.lang_texts[2]["HELP_NIGHT_DISABLE"] = "^3#^4night d o disable ^7<- desactivar noche";
-    level.lang_texts[2]["HELP_FILTER"] = "^3#^4filter ^20^7 al ^235 ^7<- activar filtro";
+    level.lang_texts[2]["HELP_FILTER"] = "^3#^4filter ^20^7 al ^236 ^7<- activar filtro";
     level.lang_texts[2]["HELP_VALUE_NIGHT"] = "^3#^4vanight ^7o ^3#^4valuenight ^24.5 ^7a ^210 ^7<- ajustar dvar noche";
     level.lang_texts[2]["HELP_FOG"] = "^3#^4fog ^7<- desactivar o activar niebla";
     level.lang_texts[2]["HELP_LANG"] = "^3#^4lang ^71^7,^72^7,^73 ^7<- cambiar idioma (1-Inglés, 2-Español, 3-Portugués)";
@@ -67,7 +83,8 @@ init_lang_texts()
     level.lang_texts[3]["DARKNESS_ADJUSTED"] = "A escuridão foi ajustada ";
     level.lang_texts[3]["VALID_CONFIG_RANGE"] = "A configuração válida é de 4.5 a 10";
     level.lang_texts[3]["FILTER_ACTIVATED"] = "Filtro ativado: ";
-    level.lang_texts[3]["AVAILABLE_FILTERS"] = "Filtros disponíveis de 0 a 35";
+    level.lang_texts[3]["AVAILABLE_FILTERS"] = "Filtros disponíveis de 0 a 36";
+    level.lang_texts[3]["DYNAMIC_MODE"] = "Modo Noturno Dinâmico ativado";
     level.lang_texts[3]["NIGHT_MODE_ACTIVATED"] = "Modo noturno ativado";
     level.lang_texts[3]["LANG_SET_ENGLISH"] = "Idioma definido: Inglês";
     level.lang_texts[3]["LANG_SET_SPANISH"] = "Idioma definido: Espanhol";
@@ -78,7 +95,7 @@ init_lang_texts()
     level.lang_texts[3]["HELP_COMMAND_TITLE"] = "^7Comandos de ajuda";
     level.lang_texts[3]["HELP_NIGHT_ON"] = "^3#^4night on ^7<- Ativar Modo Noturno, filtro padrão ^20";
     level.lang_texts[3]["HELP_NIGHT_DISABLE"] = "^3#^4night d ou disable ^7<- desativar noite";
-    level.lang_texts[3]["HELP_FILTER"] = "^3#^4filter ^20^7 a ^235 ^7<- ativar filtro";
+    level.lang_texts[3]["HELP_FILTER"] = "^3#^4filter ^20^7 a ^236 ^7<- ativar filtro";
     level.lang_texts[3]["HELP_VALUE_NIGHT"] = "^3#^4vanight ^7ou ^3#^4valuenight ^24.5 ^7a ^210 ^7<- ajustar dvar noite";
     level.lang_texts[3]["HELP_FOG"] = "^3#^4fog ^7<- desativar ou ativar névoa";
     level.lang_texts[3]["HELP_LANG"] = "^3#^4lang ^71^7,^72^7,^73 ^7<- alterar idioma (1-Inglês, 2-Espanhol, 3-Português)";
@@ -102,6 +119,10 @@ init()
     level thread init_lang_texts();  
     level thread on_player_connect();
     level thread onPlayerSay();
+    level thread monitor_end_game();
+    level thread rotate_skydome();
+    level thread change_skydome();
+    level thread daynightcycle();
 }
 on_player_connect()
 {
@@ -119,6 +140,11 @@ on_player_connect()
 on_players_spawned()
 {
     self endon( "disconnect" );
+    
+    self thread reset_night_mode_on_end();
+    
+    first_spawn = true;
+
     for (;;)
     {
         self waittill( "spawned_player" );
@@ -127,16 +153,146 @@ on_players_spawned()
         self.definido_comandos = 0;
         self.langLE = 1; 
 
+        if (first_spawn)
+        {
+            first_spawn = false;
+            self thread save_default_dvars();
+            self reset_all_night_mode_dvars();
+            self thread load_night_mode_config();
+        }
         
-        self SetClientDvar("r_fog", "1");
-        self thread disable_night_mode();
+        
+        self.nightfix = 1;
 
     }
 }
+save_default_dvars()
+{
+    if (isDefined(self.defaults_saved))
+        return;
+
+    self.defaults_saved = true;
+    wait 0.5; 
+    
+    
+    if (!isDefined(level.default_r_exposureValue)) level.default_r_exposureValue = getDvar("r_exposureValue");
+    if (!isDefined(level.default_r_lightTweakSunLight)) level.default_r_lightTweakSunLight = getDvar("r_lightTweakSunLight");
+    if (!isDefined(level.default_r_sky_intensity_factor0)) level.default_r_sky_intensity_factor0 = getDvar("r_sky_intensity_factor0");
+    if (!isDefined(level.default_r_skyColorTemp)) level.default_r_skyColorTemp = getDvar("r_skyColorTemp");
+    if (!isDefined(level.default_r_skyRotation)) level.default_r_skyRotation = getDvar("r_skyRotation");
+    if (!isDefined(level.default_r_skyTransition)) level.default_r_skyTransition = getDvar("r_skyTransition");
+    if (!isDefined(level.default_r_lighttweaksuncolor)) level.default_r_lighttweaksuncolor = getDvar("r_lighttweaksuncolor");
+    if (!isDefined(level.default_r_lodScaleRigid)) level.default_r_lodScaleRigid = getDvar("r_lodScaleRigid");
+    if (!isDefined(level.default_r_lodScaleSkinned)) level.default_r_lodScaleSkinned = getDvar("r_lodScaleSkinned");
+    if (!isDefined(level.default_r_enablePlayerShadow)) level.default_r_enablePlayerShadow = getDvar("r_enablePlayerShadow");
+    if (!isDefined(level.default_r_lightTweakSunDirection)) level.default_r_lightTweakSunDirection = getDvar("r_lightTweakSunDirection");
+    if (!isDefined(level.default_wind_global_vector)) level.default_wind_global_vector = getDvar("wind_global_vector");
+    if (!isDefined(level.default_sm_sunquality)) level.default_sm_sunquality = getDvar("sm_sunquality");
+    if (!isDefined(level.default_r_dof_enable)) level.default_r_dof_enable = getDvar("r_dof_enable");
+    if (!isDefined(level.default_r_lodBiasRigid)) level.default_r_lodBiasRigid = getDvar("r_lodBiasRigid");
+    if (!isDefined(level.default_r_lodBiasSkinned)) level.default_r_lodBiasSkinned = getDvar("r_lodBiasSkinned");
+    if (!isDefined(level.default_r_bloomScale)) level.default_r_bloomScale = getDvar("r_bloomScale");
+    if (!isDefined(level.default_r_bloomThreshold)) level.default_r_bloomThreshold = getDvar("r_bloomThreshold");
+}
+
+reset_night_mode_on_end()
+{
+    self waittill( "disconnect" );
+    self reset_all_night_mode_dvars();
+}
+
+monitor_end_game()
+{
+    level waittill( "end_game" );
+    
+    foreach(player in level.players)
+    {
+        if (isDefined(player))
+        {
+            player reset_all_night_mode_dvars();
+        }
+    }
+}
+
+reset_all_night_mode_dvars()
+{
+    
+    self SetClientDvar("r_filmUseTweaks", 0);
+    self SetClientDvar("r_bloomTweaks", 0);
+    self SetClientDvar("r_exposureTweak", 0);
+    
+    
+    if (isDefined(level.default_r_exposureValue)) self apply_night_vision_exposure(level.default_r_exposureValue);
+    else self apply_night_vision_exposure(0);
+    
+    if (isDefined(level.default_r_lightTweakSunLight)) self SetClientDvar("r_lightTweakSunLight", level.default_r_lightTweakSunLight);
+    if (isDefined(level.default_r_sky_intensity_factor0)) self SetClientDvar("r_sky_intensity_factor0", level.default_r_sky_intensity_factor0);
+    if (isDefined(level.default_r_skyColorTemp)) self SetClientDvar("r_skyColorTemp", level.default_r_skyColorTemp);
+    if (isDefined(level.default_r_skyRotation)) self SetClientDvar("r_skyRotation", level.default_r_skyRotation);
+    if (isDefined(level.default_r_skyTransition)) self SetClientDvar("r_skyTransition", level.default_r_skyTransition);
+    if (isDefined(level.default_r_lighttweaksuncolor)) self SetClientDvar("r_lighttweaksuncolor", level.default_r_lighttweaksuncolor);
+    if (isDefined(level.default_r_lodScaleRigid)) self SetClientDvar("r_lodScaleRigid", level.default_r_lodScaleRigid);
+    if (isDefined(level.default_r_lodScaleSkinned)) self SetClientDvar("r_lodScaleSkinned", level.default_r_lodScaleSkinned);
+    if (isDefined(level.default_r_enablePlayerShadow)) self SetClientDvar("r_enablePlayerShadow", level.default_r_enablePlayerShadow);
+    if (isDefined(level.default_r_lightTweakSunDirection)) self SetClientDvar("r_lightTweakSunDirection", level.default_r_lightTweakSunDirection);
+    if (isDefined(level.default_wind_global_vector)) self SetClientDvar("wind_global_vector", level.default_wind_global_vector);
+    if (isDefined(level.default_sm_sunquality)) self SetClientDvar("sm_sunquality", level.default_sm_sunquality);
+    if (isDefined(level.default_r_dof_enable)) self SetClientDvar("r_dof_enable", level.default_r_dof_enable);
+    if (isDefined(level.default_r_lodBiasRigid)) self SetClientDvar("r_lodBiasRigid", level.default_r_lodBiasRigid);
+    if (isDefined(level.default_r_lodBiasSkinned)) self SetClientDvar("r_lodBiasSkinned", level.default_r_lodBiasSkinned);
+    if (isDefined(level.default_r_bloomScale)) self SetClientDvar("r_bloomScale", level.default_r_bloomScale);
+    if (isDefined(level.default_r_bloomThreshold)) self SetClientDvar("r_bloomThreshold", level.default_r_bloomThreshold);
+
+    
+    self SetClientDvar( "vc_fgm", "1 1 1 1" );
+    self SetClientDvar( "vc_fbm", "0 0 0 0" );
+    self SetClientDvar( "vc_fsm", "1 1 1 1" );
+    self SetClientDvar( "vc_yh", "0 0 0 0" );
+    self SetClientDvar( "vc_yl", "0 0 0 0" );
+    self SetClientDvar( "vc_rgbh", "0 0 0 0" );
+    self SetClientDvar( "vc_rgbl", "0 0 0 0" );
+
+    
+    self SetClientDvar("r_filmTweakEnable", 0);
+    self SetClientDvar("r_filmTweakInvert", 0);
+    self SetClientDvar("r_filmTweakBrightness", 0);
+    self SetClientDvar("r_filmTweakContrast", 1);
+    self SetClientDvar("r_filmTweakDesaturation", 0);
+    self SetClientDvar("r_filmTweakLightTint", "1 1 1");
+    self SetClientDvar("r_filmTweakDarkTint", "1 1 1");
+    
+    
+    if (isDefined(self.fog) && self.fog == 1)
+    {
+        self SetClientDvar("r_fog", "1");
+        self SetClientDvar("scr_fog_disable", "0");
+        self SetClientDvar("r_fog_disable", "0");
+        self SetClientDvar("r_fogSunOpacity", "1");
+        self.fog = 0;
+    }
+    
+    self.nightfix = -1;
+    self.night_mode_enabled = false;
+}
+
 night_mode_toggle(i)
 {
     self endon("discconnect");
+    self notify("stop_night_threads");
     self.nightfix = 1;
+    
+    
+    self.nm_state = "enabled";
+    self.nm_filter = i;
+    self.nm_value = 0; 
+    
+    
+    self save_night_mode_config();
+
+    
+    self thread rotate_skydome();
+    self thread change_skydome();
+
 	switch (i)
 	{
 		case 0:              self thread enable_dark_mode();                           break;
@@ -175,7 +331,10 @@ night_mode_toggle(i)
         case 33:             self thread enable_ancient_temple_night_mode();          break;
         case 34:             self thread enable_futuristic_city_night_mode();         break;
         case 35:             self thread enable_dream_world_night_mode();             break;
+        case 36:             self thread enable_dynamic_night_mode();                 break;
 	}
+
+
 
 	wait 0.05;
 }
@@ -226,26 +385,30 @@ enable_dark_mode()
 {
     self endon("disconnect");
     set_common_dvars();
-	self SetClientDvar( "r_dof_enable", 0 );
-	self SetClientDvar( "r_lodBiasRigid", -1000 );
-	self SetClientDvar( "r_lodBiasSkinned", -1000 );
-	self SetClientDvar( "r_enablePlayerShadow", 1 );
-	self SetClientDvar( "r_skyTransition", 1 );
-	self SetClientDvar( "sm_sunquality", 2 );
-	self SetClientDvar( "r_filmUseTweaks", 1 ); 
-    self SetClientDvar( "r_bloomTweaks", 1 ); 
-    self SetClientDvar( "r_exposureTweak", 1 ); 
-	self SetClientDvar( "vc_fbm", "0 0 0 0" );
-	self SetClientDvar( "vc_fsm", "1 1 1 1" );
-    self SetClientDvar("vc_rgbh", "0.05 0.05 0.05 0");
-    self SetClientDvar("vc_yl", "0.1 0.1 0.1 0");
-    self SetClientDvar("vc_yh", "0.2 0.2 0.2 0");
-    self SetClientDvar("vc_rgbl", "0.05 0.05 0.05 0");
-    self SetClientDvar("r_exposureValue", 1.0);
-    self SetClientDvar("r_lightTweakSunLight", 0.1);
-    self SetClientDvar("r_sky_intensity_factor0", 0.1);
-    self SetClientDvar("r_bloomScale", 1.5);
-    self SetClientDvar("r_bloomThreshold", 0.5);
+	
+	self setClientDvar("r_lodScaleRigid", 1);
+	self setClientDvar("r_lodScaleSkinned", 1);
+	self setclientdvar("r_enablePlayerShadow", 1);
+	self setclientdvar( "r_filmUseTweaks", 1 );
+	self setclientdvar( "r_bloomTweaks", 1 );
+	self setclientdvar( "r_exposureTweak", 1 );
+    
+    
+    self SetClientDvar( "vc_fgm", "1 1 1 1" );
+    self SetClientDvar( "vc_fbm", "0 0 0 0" );
+    self SetClientDvar( "vc_fsm", "1 1 1 1" );
+    self SetClientDvar( "vc_yh", "0 0 0 0" );
+    self SetClientDvar( "vc_yl", "0 0 0 0" );
+    self SetClientDvar( "vc_rgbh", "0 0 0 0" );
+    self SetClientDvar( "vc_rgbl", "0 0 0 0" );
+
+	self apply_night_vision_exposure( 3.5 );
+	self setclientdvar( "r_lightTweakSunLight", 15 ); 
+	self setclientdvar( "r_sky_intensity_factor0", 3 ); 
+    self setclientdvar( "r_lightTweakSunDirection", ( 300, 250, 12 ) );
+    self setclientdvar( "wind_global_vector", ( 300, 220, 100 ) );
+    self setclientdvar( "sm_sunquality", 2 );
+	
     set_map_specific_exposure();
     self thread visual_fix();
 }
@@ -1339,28 +1502,23 @@ enable_dream_world_night_mode()
 disable_night_mode() 
 {
 	self notify( "disable_nightmode" );
-	self.night = 0;
-	self.nightfix = 0;
-	self SetClientDvar( "r_filmUseTweaks", 0 );
-	self SetClientDvar( "r_bloomTweaks", 0 );
-	self SetClientDvar( "r_exposureTweak", 0 );
-	self SetClientDvar( "r_filmUseTweaks", 0 );
-    self SetClientDvar( "r_bloomTweaks", 0 );
-    self SetClientDvar( "r_exposureTweak", 0 );
-	self SetClientDvar( "vc_rgbh", "0 0 0 0" );
-	self SetClientDvar( "vc_yl", "0 0 0 0" );
-	self SetClientDvar( "vc_yh", "0 0 0 0" );
-	self SetClientDvar( "vc_rgbl", "0 0 0 0" );
-	self SetClientDvar( "r_exposureValue", int( level.default_r_exposureValue ) );
-	self SetClientDvar( "r_lightTweakSunLight", int( level.default_r_lightTweakSunLight ) );
-	self SetClientDvar( "r_sky_intensity_factor0", int( level.default_r_sky_intensity_factor0 ) );
+    
+    
+    self.nm_state = "disabled";
+    self.nm_filter = 0;
+    self.nm_value = 0;
+    self save_night_mode_config();
+
+    self reset_all_night_mode_dvars();
 }
 
 visual_fix()
 {
 	level endon( "game_ended" );
 	self endon( "disconnect" );
+	self endon( "disconnect" );
 	self endon( "disable_nightmode" );
+    self endon( "stop_night_threads" );
 	if( level.script == "zm_buried" )
 	{
 		while( getDvar( "r_sky_intensity_factor0" ) != 0 )
@@ -1390,22 +1548,24 @@ fog()
 	wait 0.5;
 	if (self.fog == 0)
 	{
-		self.fog++;
+		self.fog = 1;
 		self SetClientDvar("r_fog", "0");
 		self SetClientDvar("scr_fog_disable", "1");
 		self SetClientDvar("r_fog_disable", "1");
 		self SetClientDvar("r_fogSunOpacity", "0");
         self iPrintln(self getLangText("FOG_ACTIVATED"));
 	}
-	else if (self.fog == 1)
+	else
 	{
-		self.fog--;
+		self.fog = 0;
 		self SetClientDvar("r_fog", "1");
 		self SetClientDvar("scr_fog_disable", "0");
 		self SetClientDvar("r_fog_disable", "0");
 		self SetClientDvar("r_fogSunOpacity", "1");
         self iPrintln(self getLangText("FOG_DISABLED"));
 	}
+    
+    self save_night_mode_config();
 }
 onPlayerSay()
 {
@@ -1437,6 +1597,11 @@ onPlayerSay()
                         {
                             player iPrintln(player getLangText("DARKNESS_ADJUSTED") + i );
                             player setclientdvar("r_exposureValue", i);
+                            
+                            
+                            player.nm_state = "enabled";
+                            player.nm_value = i;
+                            player save_night_mode_config();
                         }
                         else
                         {
@@ -1453,10 +1618,14 @@ onPlayerSay()
                     if(player.nightfix > 0 && player.nightfix <= 1)
                     {
                         i = int(args[1]);
-                        if(i >=0 && i <= 35)
+                        if(i >=0 && i <= 36)
                         {
                             player thread night_mode_toggle(i);
-                            player iPrintln(player getLangText("FILTER_ACTIVATED") + i);
+                            if (i == 36) {
+                                player iPrintln(player getLangText("DYNAMIC_MODE"));
+                            } else {
+                                player iPrintln(player getLangText("FILTER_ACTIVATED") + i);
+                            }
                         }
                         else
                         {
@@ -1473,6 +1642,7 @@ onPlayerSay()
                     if(args[1] == "d" || args[1] == "disable")
                     {
                         player thread disable_night_mode();
+                        
                         player.nightfix = 2;
                     }
                     else if(args[1] == "on")
@@ -1481,6 +1651,7 @@ onPlayerSay()
                         player.nightfix = 0;
                         i = 0;
                         player thread night_mode_toggle(i);
+                        
                         player iPrintln(player getLangText("NIGHT_MODE_ACTIVATED"));
                     }
                 }
@@ -1571,3 +1742,724 @@ create_simple_hud_element()
     hudElem.hidewheninmenu = false;
     return hudElem;
 }
+
+apply_night_vision_exposure(value)
+{
+    if (isDefined(self.night_mode_darkness) && self.night_mode_darkness >= 4.5)
+    {
+        self SetClientDvar("r_exposureValue", self.night_mode_darkness);
+    }
+    else
+    {
+        self SetClientDvar("r_exposureValue", value);
+    }
+}
+
+rotate_skydome()
+{
+	if ( level.script == "zm_tomb" || level.script == "zm_prison" )
+	{
+		return;
+	}
+	
+	x = 360;
+	
+	level endon( "game_ended" );
+	self endon( "disconnect" );
+    self endon( "disable_nightmode" );
+    self endon( "stop_night_threads" );
+	
+	for(;;)
+	{
+		x -= 0.025;
+
+		if ( x < 0 )
+		{
+			x += 360;
+		}
+
+		self setclientdvar( "r_skyRotation", x );
+		wait 0.1;
+	}
+}
+
+change_skydome()
+{
+	x = 6500;
+	
+	level endon( "game_ended" );
+	self endon( "disconnect" );
+    self endon( "disable_nightmode" );
+    self endon( "stop_night_threads" );
+
+	for(;;)
+	{
+		x += 1.626;
+
+		if ( x > 25000 )
+		{
+			x -= 23350;
+		}
+		self setclientdvar( "r_skyColorTemp", x );
+		wait 0.1;
+	}
+}
+
+daynightcycle()
+{
+	level endon( "game_ended" );
+	self endon( "disconnect" );
+    self endon( "disable_nightmode" );
+    self endon( "stop_night_threads" );
+
+	if( level.script == "zm_buried" )
+    {
+        exposure = 3; 
+        bleed = 3; 
+        light = 20; 
+		
+		while( 1 )
+		{
+			flag_wait( "power_on" );
+			
+            
+            nightnumber = randomintrange( 1, 48 );
+
+            while( bleed == 3 && light == 15 && exposure == 3.85 && nightnumber == 24 )
+            {
+                bleed = bleed + 0.08;
+                light = light + 0.08;
+                exposure = exposure + 0.05;
+
+                if( exposure >= 5.723 )
+                {
+                    exposure = 5.723;
+                }
+                self setclientdvar( "r_exposureValue", exposure );
+                if( light >= 30 )
+                {
+                    light = 30;
+                }
+                self setclientdvar( "r_lightTweakSunLight", light );
+                if( bleed >= 5.7 )
+                {
+                    bleed = 5.7;
+                }
+                self setclientdvar( "r_sky_intensity_factor0", bleed );
+                if( light == 30 && bleed == 5.7 && exposure == 5.723 )
+                {
+                    self setclientdvar( "vc_yl", "0 0 0.2 0 " );
+                    wait 0.15;
+                    self setclientdvar( "vc_yl", "0 0 0.3 0 " );
+                    wait 0.15;
+                    self setclientdvar( "vc_yl", "0 0 0.4 0 " );
+                    wait 0.15;
+                    self setclientdvar( "vc_yl", "0 0 0.5 0 " );
+                    wait 0.15;
+                    self setclientdvar( "vc_yl", "0 0 0.6 0 " );
+                    wait 0.15;
+                    self setclientdvar( "vc_yl", "0 0 0.7 0 " );
+                    wait 0.15;
+                    self setclientdvar( "vc_yl", "0 0 0.8 0 " );
+                    wait 0.2;
+                    break;
+                }
+                wait 0.005;
+            }
+            
+            daynumber = randomintrange( 1, 24 );
+            while( light == 30 && bleed == 5.7 && daynumber == 12 && exposure == 5.723 )
+            {
+                bleed = bleed - 0.1;
+                light = light - 0.1;
+                exposure = exposure - 0.05;
+
+                if( exposure <= 3.85 )
+                {
+                    exposure = 3.85;
+                }
+                self setclientdvar( "r_exposureValue", exposure );
+                if( light <= 15 )
+                {
+                    light = 15;
+                }
+                self setclientdvar( "r_lightTweakSunLight", light );
+                if( bleed <= 3 )
+                {
+                    bleed = 3;
+                }
+                self setclientdvar( "r_sky_intensity_factor0", bleed );
+                if( light == 15 && bleed == 3 && exposure == 3.85 )
+                {
+                    self setclientdvar( "vc_yl", "0 0 0.8 0 " );
+                    wait 0.2;
+                    self setclientdvar( "vc_yl", "0 0 0.7 0 " );
+                    wait 0.2;
+                    self setclientdvar( "vc_yl", "0 0 0.6 0 " );
+                    wait 0.2;
+                    self setclientdvar( "vc_yl", "0 0 0.5 0 " );
+                    wait 0.2;
+                    self setclientdvar( "vc_yl", "0 0 0.4 0 " );
+                    wait 0.2;
+                    self setclientdvar( "vc_yl", "0 0 0.3 0 " );
+                    wait 0.2;
+                    self setclientdvar( "vc_yl", "0 0 0.2 0 " );
+                    wait 0.2;
+                    self setclientdvar( "vc_yl", "0 0 0.1 0 " );
+                    wait 0.2;
+                    break;
+                }
+                wait 0.005;
+            }
+			
+			wait 13;
+		}
+    }
+	else if( level.script == "zm_highrise" )
+	{
+        exposure = 3; 
+        bleed = 3; 
+        light = 20; 
+		
+		while( 1 )
+		{
+			flag_wait( "power_on" );
+			
+            nightnumber = randomintrange( 1, 48 );
+
+            while( bleed == 3 && light == 15 && exposure == 3.85 && nightnumber == 24 )
+            {
+                bleed = bleed + 0.08;
+                light = light + 0.08;
+                exposure = exposure + 0.05;
+
+                if( exposure >= 5.723 )
+                {
+                    exposure = 5.723;
+                }
+                self setclientdvar( "r_exposureValue", exposure );
+                if( light >= 30 )
+                {
+                    light = 30;
+                }
+                self setclientdvar( "r_lightTweakSunLight", light );
+                if( bleed >= 5.7 )
+                {
+                    bleed = 5.7;
+                }
+                self setclientdvar( "r_sky_intensity_factor0", bleed );
+                if( light == 30 && bleed == 5.7 && exposure == 5.723 )
+                {
+                    self setclientdvar( "vc_yl", "0 0 0.2 0 " );
+                    wait 0.15;
+                    self setclientdvar( "vc_yl", "0 0 0.3 0 " );
+                    wait 0.15;
+                    self setclientdvar( "vc_yl", "0 0 0.4 0 " );
+                    wait 0.15;
+                    self setclientdvar( "vc_yl", "0 0 0.5 0 " );
+                    wait 0.15;
+                    self setclientdvar( "vc_yl", "0 0 0.6 0 " );
+                    wait 0.15;
+                    self setclientdvar( "vc_yl", "0 0 0.7 0 " );
+                    wait 0.15;
+                    self setclientdvar( "vc_yl", "0 0 0.8 0 " );
+                    wait 0.2;
+                    break;
+                }
+                wait 0.005;
+            }
+            
+            daynumber = randomintrange( 1, 24 );
+            while( light == 30 && bleed == 5.7 && daynumber == 12 && exposure == 5.723 )
+            {
+                bleed = bleed - 0.1;
+                light = light - 0.1;
+                exposure = exposure - 0.05;
+
+                if( exposure <= 3.85 )
+                {
+                    exposure = 3.85;
+                }
+                self setclientdvar( "r_exposureValue", exposure );
+                if( light <= 15 )
+                {
+                    light = 15;
+                }
+                self setclientdvar( "r_lightTweakSunLight", light );
+                if( bleed <= 3 )
+                {
+                    bleed = 3;
+                }
+                self setclientdvar( "r_sky_intensity_factor0", bleed );
+                if( light == 15 && bleed == 3 && exposure == 3.85 )
+                {
+                    self setclientdvar( "vc_yl", "0 0 0.8 0 " );
+                    wait 0.2;
+                    self setclientdvar( "vc_yl", "0 0 0.7 0 " );
+                    wait 0.2;
+                    self setclientdvar( "vc_yl", "0 0 0.6 0 " );
+                    wait 0.2;
+                    self setclientdvar( "vc_yl", "0 0 0.5 0 " );
+                    wait 0.2;
+                    self setclientdvar( "vc_yl", "0 0 0.4 0 " );
+                    wait 0.2;
+                    self setclientdvar( "vc_yl", "0 0 0.3 0 " );
+                    wait 0.2;
+                    self setclientdvar( "vc_yl", "0 0 0.2 0 " );
+                    wait 0.2;
+                    self setclientdvar( "vc_yl", "0 0 0.1 0 " );
+                    wait 0.2;
+                    break;
+                }
+                wait 0.005;
+            }
+			wait 13;
+		}
+    }
+	else return;
+}
+
+enable_dynamic_night_mode()
+{
+    self endon("disconnect");
+    set_common_dvars();
+
+    
+    
+    self thread daynightcycle();
+    self thread visual_fix();
+
+	self setClientDvar("r_lodScaleRigid", 1);
+	self setClientDvar("r_lodScaleSkinned", 1);
+	self setclientdvar("r_enablePlayerShadow", 1);
+	self setclientdvar( "r_filmUseTweaks", 1 );
+	self setclientdvar( "r_bloomTweaks", 1 );
+	self setclientdvar( "r_exposureTweak", 1 );
+	self setclientdvar( "r_exposureValue", 3.5 );
+	self setclientdvar( "r_lightTweakSunLight", 15 ); 
+	self setclientdvar( "r_sky_intensity_factor0", 3 ); 
+    self setclientdvar( "r_lightTweakSunDirection", ( 300, 250, 12 ) );
+    self setclientdvar( "wind_global_vector", ( 300, 220, 100 ) );
+    self setclientdvar( "sm_sunquality", 2 );
+	
+	if( level.script == "zm_tomb" )
+	{
+		self setclientdvar( "r_skyRotation", 0 );
+		self setclientdvar( "r_skyTransition", 0 );
+		self setclientdvar( "r_exposureValue", 5.2 );
+		self setclientdvar( "r_sky_intensity_factor0", 5 );
+		self setclientdvar( "r_lighttweaksunlight", 20 );
+		self setClientDvar( "r_bloomtweaks", 1 );
+		self setclientdvar( "r_lighttweaksuncolor", "0.002 0.07 0.1" );
+        self setclientdvar( "vc_fgm", "1 1 1 1" );
+        self setclientdvar( "vc_fbm", "0 0 0 0" );
+        self setclientdvar( "vc_fsm", "1 1 1 1" );
+        self setclientdvar( "vc_yh", "0 0.08 0.2 0" );
+        self setclientdvar( "vc_yl", "0 0.007 0.07 0" );
+		self setclientdvar( "vc_rgbh", "0.005 0 0.05 0.5" );
+		self setclientdvar( "vc_rgbl", "0 0.04 0.05 2" );
+	}
+
+    else if( level.script == "zm_buried" )
+	{
+		self setclientdvar( "r_skyRotation", 1 );
+		self setclientdvar( "r_skyTransition", 0 );
+		self setclientdvar( "r_exposureValue", 4.8 );
+		self setclientdvar( "r_skyColorTemp", 85000 );
+		self setclientdvar( "r_sky_intensity_factor0", 4 );
+		self setclientdvar( "r_lighttweaksunlight", 30 );
+		self setclientdvar( "r_lighttweaksuncolor", "0.1 0.07 0.2" );
+        self setclientdvar( "vc_fgm", "1 1 1 1" );
+        self setclientdvar( "vc_fbm", "0 0 0 0" );
+        self setclientdvar( "vc_fsm", "1 1 1 1" );
+        self setclientdvar( "vc_yh", "0 0 0.3 0" );
+        
+		self setclientdvar( "vc_yl", "0 0 0.4 0 " );
+        self setclientdvar( "vc_rgbh", "0.002 0.001 0.2 2" );
+        self setclientdvar( "vc_rgbl", "0.002 0.004 0.3 2" );
+	}
+
+	else if( level.script == "zm_nuked" )
+	{
+		self setclientdvar( "r_skyTransition", 0 );
+		self setclientdvar( "r_skyRotation", 0 );
+		self setclientdvar( "r_exposureValue", 6.4 );
+		self setclientdvar( "r_skyColorTemp", 25000 );
+		self setclientdvar( "r_sky_intensity_factor0", 1 );
+		self setclientdvar( "r_lighttweaksunlight", 42 );
+		self setclientdvar( "vc_fgm", "1 1 1 1" );
+        self setclientdvar( "vc_fbm", "0 0 0 0" );
+        self setclientdvar( "vc_fsm", "1 1 1 1" );
+        self setclientdvar( "vc_yh", "0 0 0.2 0" );
+        self setclientdvar( "vc_yl", "0 0.001 0.1 0" );
+		self setclientdvar( "vc_rgbh", "0 0 1 0.5" );
+		self setclientdvar( "vc_rgbl", "0.2015 0 0.498 4.2" );
+		self setclientdvar( "r_lighttweaksuncolor", "0.2 0.2 0.5" );
+		self setClientDvar( "r_bloomtweaks", 1 );
+	}
+
+	else if( level.script == "zm_highrise" )
+	{
+		self setclientdvar( "r_skyRotation", 1 );
+		self setclientdvar( "r_skyTransition", 0 );
+		self setclientdvar( "r_exposureValue", 6.1 );
+		self setclientdvar( "r_skyColorTemp", 85000 );
+		self setclientdvar( "r_sky_intensity_factor0", 2.6 ); 
+		self setclientdvar( "r_lighttweaksunlight", 30 );
+		self setclientdvar( "r_lighttweaksuncolor", "0.1 0.07 0.2" );
+        self setclientdvar( "vc_fgm", "1 1 1 1" );
+        self setclientdvar( "vc_fbm", "0 0 0 0" );
+        self setclientdvar( "vc_fsm", "1 1 1 1" );
+        self setclientdvar( "vc_yh", "0 0 0.4 0" );
+        self setclientdvar( "vc_yl", "0.05 0 0.1 0" );
+        self setclientdvar( "vc_rgbh", "0.1 0 0.489 0" );
+        self setclientdvar( "vc_rgbl", "0.1015 0 0.598 0" );
+	}
+
+    else if( level.script == "zm_prison")
+    {
+		self setClientDvar("r_lodScaleRigid", 1);
+		self setClientDvar("r_lodScaleSkinned", 1);
+		self setclientdvar("r_enablePlayerShadow", 1);
+		self setclientdvar("r_filmUseTweaks", 1);
+		self setclientdvar("r_exposureTweak", 1);
+		self setclientdvar("r_lightTweakSunLight", 15); 
+		self setclientdvar("r_sky_intensity_factor0", 2); 
+		self setclientdvar("r_lightTweakSunDirection", (250, 200, 10)); 
+		self setclientdvar("wind_global_vector", (300, 220, 100)); 
+		self setclientdvar("sm_sunquality", 2); 
+
+		self setclientdvar("r_skyRotation", 0);
+		self setclientdvar("r_skyTransition", 0);
+		self setclientdvar("r_exposureValue", 5.7); 
+		self setclientdvar("r_skyColorTemp", 25000); 
+		self setclientdvar("r_sky_intensity_factor0", 2); 
+		self setclientdvar("r_lighttweaksunlight", 15); 
+		self setClientDvar("r_bloomtweaks", 1); 
+		self setclientdvar("r_lighttweaksuncolor", "0.1 0.2 2.5"); 
+
+		self setclientdvar("vc_fgm", "1 1 1 0");
+		self setclientdvar("vc_fbm", "0 0 0 0");
+		self setclientdvar("vc_fsm", "1 1 1 1");
+		self setclientdvar("vc_yh", "4 0.08 0.2 4");
+		self setclientdvar("vc_yl", "0.1 0 0.2 0");
+		self setclientdvar("vc_rgbh", "0.1 0.6 3 4");
+		self setclientdvar("vc_rgbl", "0.05 0.04 0.7 2.1");
+
+    }
+    else return;
+}
+
+
+save_night_mode_config()
+{
+    guid = self getGuid();
+    path = "scriptdata/nightmode/" + guid + ".txt";
+    
+    file = fs_fopen(path, "write");
+    if (isDefined(file))
+    {
+        
+        state = "disabled";
+        if (isDefined(self.nm_state)) state = self.nm_state;
+        
+        filter = 0;
+        if (isDefined(self.nm_filter)) filter = self.nm_filter;
+        
+        val = 0;
+        if (isDefined(self.nm_value)) val = self.nm_value;
+        
+        fog = 0;
+        if (isDefined(self.fog)) fog = self.fog;
+        
+        content = "state: " + state + "\n";
+        content += "filter: " + filter + "\n";
+        content += "nightvalue: " + val + "\n";
+        content += "fog: " + fog;
+        
+        fs_write(file, content);
+        fs_fclose(file);
+    }
+}
+
+load_night_mode_config()
+{
+    wait 2; 
+    
+    guid = self getGuid();
+    path = "scriptdata/nightmode/" + guid + ".txt";
+    
+    loaded = false;
+    
+    if (fs_testfile(path))
+    {
+        file = fs_fopen(path, "read");
+        if (isDefined(file))
+        {
+            content = fs_read(file, fs_length(file));
+            fs_fclose(file);
+            
+            lines = strtok(content, "\n");
+            
+            
+            state = "disabled";
+            filter = 0;
+            nightvalue = 0;
+            fog = 0;
+            
+            foreach (line in lines)
+            {
+                
+                if (isSubStr(line, "state:"))
+                {
+                    
+                    tokens = strtok(line, ":");
+                    if (tokens.size >= 2) state = tokens[1];
+                    
+                    
+                    state = replace_string(state, " ", "");
+                    state = replace_string(state, "\r", "");
+                }
+                else if (isSubStr(line, "filter:"))
+                {
+                     tokens = strtok(line, ":");
+                     if (tokens.size >= 2) filter = int(tokens[1]);
+                }
+                else if (isSubStr(line, "nightvalue:"))
+                {
+                     tokens = strtok(line, ":");
+                     if (tokens.size >= 2) nightvalue = float(tokens[1]);
+                }
+                else if (isSubStr(line, "fog:"))
+                {
+                     tokens = strtok(line, ":");
+                     if (tokens.size >= 2) fog = int(tokens[1]);
+                }
+            }
+            
+            //self iPrintln("Config Found: " + state + " F:" + filter + " V:" + nightvalue);
+
+            
+            self.fog = fog;
+            if (self.fog == 1)
+            {
+                self SetClientDvar("r_fog", "0");
+                self SetClientDvar("scr_fog_disable", "1");
+                self SetClientDvar("r_fog_disable", "1");
+                self SetClientDvar("r_fogSunOpacity", "0");
+                self iPrintln(self getLangText("FOG_ACTIVATED"));
+            }
+            else
+            {
+                self SetClientDvar("r_fog", "1");
+                self SetClientDvar("scr_fog_disable", "0");
+                self SetClientDvar("r_fog_disable", "0");
+                self SetClientDvar("r_fogSunOpacity", "1");
+            }
+            
+            
+            self.nm_state = state;
+            self.nm_filter = filter;
+            self.nm_value = nightvalue;
+            
+            
+            if (state == "disabled")
+            {
+                self thread disable_night_mode();
+                self.nightfix = 2;
+                loaded = true;
+            }
+            else if (state == "enabled")
+            {
+                
+                self.nightfix = 0;
+                self thread night_mode_toggle(filter);
+                loaded = true;
+                
+                
+                
+                wait 0.1; 
+                if (nightvalue >= 4.5 && nightvalue <= 10)
+                {
+                    self.nightfix = 1; 
+                    self setclientdvar("r_exposureValue", nightvalue);
+                    //self iPrintln("Loaded saved darkness: " + nightvalue);
+                }
+            }
+            else 
+            {
+                 //self iPrintln("Unknown state: " + state);
+            }
+        }
+    }
+    
+    if (!loaded)
+    {
+        //self iPrintln("No valid config. Defaulting to disabled.");
+        self.nm_state = "disabled";
+        self.nm_filter = 0;
+        self.nm_value = 0;
+        self.fog = 0;
+        self thread disable_night_mode();
+        self.nightfix = 2;
+    }
+}
+
+
+
+rotate_skydome()
+{
+    
+    if (level.script == "zm_tomb" || level.script == "zm_prison")
+        return;
+
+    angle = 360;
+
+    self endon("disconnect");
+    level endon("game_ended");
+
+    for(;;)
+    {
+        
+        angle = angle - 0.025;
+
+        
+        if (angle <= 0)
+        {
+            
+            angle = 360 + angle;
+        }
+
+        self setclientdvar("r_skyRotation", angle);
+        wait 0.1;
+    }
+}
+
+
+change_skydome()
+{
+    
+    tempValue = 6500;
+
+    self endon("disconnect");
+    level endon("game_ended");
+
+    for(;;)
+    {
+        
+        tempValue = tempValue + 1.626;
+
+        
+        if (tempValue >= 25000)
+        {
+            tempValue = tempValue - 23350;
+        }
+
+        self setclientdvar("r_skyColorTemp", tempValue);
+        wait 0.1;
+    }
+}
+
+
+daynightcycle()
+{
+    level endon("game_ended");
+    self endon("disconnect");
+
+    
+    if (!(level.script == "zm_buried" || level.script == "zm_highrise"))
+        return;
+
+    
+    baseExp = 3;
+    baseBleed = 3;
+    baseLight = 20;
+
+    currentExp = baseExp;
+    currentBleed = baseBleed;
+    currentLight = baseLight;
+
+    nightExpMax = 5.723;
+    nightLightMax = 30;
+    nightBleedMax = 5.7;
+
+    dayExpMin = 3.85;
+    dayLightMin = 15;
+    dayBleedMin = 3;
+
+    for(;;)
+    {
+        flag_wait("power_on");
+
+        foreach(p in getplayers())
+        {
+            
+            idxNight = randomintrange(1, 48);
+
+            if (currentBleed == dayBleedMin && currentLight == dayLightMin && currentExp == dayExpMin && idxNight == 24)
+            {
+                for(;;)
+                {
+                    currentBleed += 0.08;
+                    currentLight += 0.08;
+                    currentExp += 0.05;
+
+                    if (currentExp > nightExpMax) currentExp = nightExpMax;
+                    if (currentLight > nightLightMax) currentLight = nightLightMax;
+                    if (currentBleed > nightBleedMax) currentBleed = nightBleedMax;
+
+                    p apply_night_vision_exposure(currentExp);
+                    p setclientdvar("r_lightTweakSunLight", currentLight);
+                    p setclientdvar("r_sky_intensity_factor0", currentBleed);
+
+                    if (currentExp == nightExpMax && currentLight == nightLightMax && currentBleed == nightBleedMax)
+                    {
+                        for(i = 2; i <= 8; i++)
+                        {
+                            p setclientdvar("vc_yl", "0 0 0." + i + " 0");
+                            wait 0.15;
+                        }
+                        break;
+                    }
+                    wait 0.005;
+                }
+            }
+
+            
+            idxDay = randomintrange(1, 24);
+
+            if (currentBleed == nightBleedMax && currentLight == nightLightMax && currentExp == nightExpMax && idxDay == 12)
+            {
+                for(;;)
+                {
+                    currentBleed -= 0.1;
+                    currentLight -= 0.1;
+                    currentExp -= 0.05;
+
+                    if (currentExp < dayExpMin) currentExp = dayExpMin;
+                    if (currentLight < dayLightMin) currentLight = dayLightMin;
+                    if (currentBleed < dayBleedMin) currentBleed = dayBleedMin;
+
+                    p apply_night_vision_exposure(currentExp);
+                    p setclientdvar("r_lightTweakSunLight", currentLight);
+                    p setclientdvar("r_sky_intensity_factor0", currentBleed);
+
+                    if (currentExp == dayExpMin && currentLight == dayLightMin && currentBleed == dayBleedMin)
+                    {
+                        for(j = 8; j >= 1; j--)
+                        {
+                            p setclientdvar("vc_yl", "0 0 0." + j + " 0");
+                            wait 0.2;
+                        }
+                        break;
+                    }
+
+                    wait 0.005;
+                }
+            }
+        }
+
+        wait 13;
+    }
+}
+
