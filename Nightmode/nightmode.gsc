@@ -283,7 +283,7 @@ night_mode_toggle(i)
     
     self.nm_state = "enabled";
     self.nm_filter = i;
-    self.nm_value = 0; 
+    
     
     
     self save_night_mode_config();
@@ -332,7 +332,12 @@ night_mode_toggle(i)
 
 
 
-	wait 0.05;
+	wait 0.1;
+
+    if (isDefined(self.nm_value) && self.nm_value >= 4.5)
+    {
+        self SetClientDvar("r_exposureValue", self.nm_value);
+    }
 }
 set_common_dvars()
 {
@@ -1741,9 +1746,9 @@ create_simple_hud_element()
 
 apply_night_vision_exposure(value)
 {
-    if (isDefined(self.night_mode_darkness) && self.night_mode_darkness >= 4.5)
+    if (isDefined(self.nm_value) && self.nm_value >= 4.5)
     {
-        self SetClientDvar("r_exposureValue", self.night_mode_darkness);
+        self SetClientDvar("r_exposureValue", self.nm_value);
     }
     else
     {
@@ -2284,7 +2289,7 @@ load_night_mode_config()
             }
             else 
             {
-                 //self iPrintln("Unknown state: " + state)
+                 //none
             }
         }
     }
