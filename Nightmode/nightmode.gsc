@@ -116,12 +116,23 @@ getLangText(text_key)
 init()
 {
     level endon("game_ended");
+
+    if ( level.script == "zm_prison" )
+    {
+        level._callbacks["on_player_connect"][16] = ::player_lightning_manager_override;
+    }
+
     level thread init_lang_texts();  
     level thread on_player_connect();
     level thread onPlayerSay();
     level thread monitor_end_game();
     level thread rotate_skydome();
     level thread change_skydome();
+}
+
+player_lightning_manager_override()
+{
+    self setclientfieldtoplayer( "toggle_lightning", 0 );
 }
 on_player_connect()
 {
