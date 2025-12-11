@@ -122,7 +122,6 @@ init()
     level thread monitor_end_game();
     level thread rotate_skydome();
     level thread change_skydome();
-    level thread daynightcycle();
 }
 on_player_connect()
 {
@@ -289,9 +288,6 @@ night_mode_toggle(i)
     
     self save_night_mode_config();
 
-    
-    self thread rotate_skydome();
-    self thread change_skydome();
 
 	switch (i)
 	{
@@ -2237,7 +2233,7 @@ load_night_mode_config()
                 }
             }
             
-            //self iPrintln("Config Found: " + state + " F:" + filter + " V:" + nightvalue);
+            self iPrintln("Config Found: " + state + " F:" + filter + " V:" + nightvalue);
 
             
             self.fog = fog;
@@ -2283,183 +2279,25 @@ load_night_mode_config()
                 {
                     self.nightfix = 1; 
                     self setclientdvar("r_exposureValue", nightvalue);
-                    //self iPrintln("Loaded saved darkness: " + nightvalue);
+                    self iPrintln("Loaded saved darkness: " + nightvalue);
                 }
             }
             else 
             {
-                 //self iPrintln("Unknown state: " + state);
+                 self iPrintln("Unknown state: " + state);
             }
         }
     }
     
     if (!loaded)
     {
-        //self iPrintln("No valid config. Defaulting to disabled.");
+        self iPrintln("No valid config. Defaulting to disabled.");
         self.nm_state = "disabled";
         self.nm_filter = 0;
         self.nm_value = 0;
         self.fog = 0;
         self thread disable_night_mode();
         self.nightfix = 2;
-    }
-}
-
-
-
-rotate_skydome()
-{
-    
-    if (level.script == "zm_tomb" || level.script == "zm_prison")
-        return;
-
-    angle = 360;
-
-    self endon("disconnect");
-    level endon("game_ended");
-
-    for(;;)
-    {
-        
-        angle = angle - 0.025;
-
-        
-        if (angle <= 0)
-        {
-            
-            angle = 360 + angle;
-        }
-
-        self setclientdvar("r_skyRotation", angle);
-        wait 0.1;
-    }
-}
-
-
-change_skydome()
-{
-    
-    tempValue = 6500;
-
-    self endon("disconnect");
-    level endon("game_ended");
-
-    for(;;)
-    {
-        
-        tempValue = tempValue + 1.626;
-
-        
-        if (tempValue >= 25000)
-        {
-            tempValue = tempValue - 23350;
-        }
-
-        self setclientdvar("r_skyColorTemp", tempValue);
-        wait 0.1;
-    }
-}
-
-
-daynightcycle()
-{
-    level endon("game_ended");
-    self endon("disconnect");
-
-    
-    if (!(level.script == "zm_buried" || level.script == "zm_highrise"))
-        return;
-
-    
-    baseExp = 3;
-    baseBleed = 3;
-    baseLight = 20;
-
-    currentExp = baseExp;
-    currentBleed = baseBleed;
-    currentLight = baseLight;
-
-    nightExpMax = 5.723;
-    nightLightMax = 30;
-    nightBleedMax = 5.7;
-
-    dayExpMin = 3.85;
-    dayLightMin = 15;
-    dayBleedMin = 3;
-
-    for(;;)
-    {
-        flag_wait("power_on");
-
-        foreach(p in getplayers())
-        {
-            
-            idxNight = randomintrange(1, 48);
-
-            if (currentBleed == dayBleedMin && currentLight == dayLightMin && currentExp == dayExpMin && idxNight == 24)
-            {
-                for(;;)
-                {
-                    currentBleed += 0.08;
-                    currentLight += 0.08;
-                    currentExp += 0.05;
-
-                    if (currentExp > nightExpMax) currentExp = nightExpMax;
-                    if (currentLight > nightLightMax) currentLight = nightLightMax;
-                    if (currentBleed > nightBleedMax) currentBleed = nightBleedMax;
-
-                    p apply_night_vision_exposure(currentExp);
-                    p setclientdvar("r_lightTweakSunLight", currentLight);
-                    p setclientdvar("r_sky_intensity_factor0", currentBleed);
-
-                    if (currentExp == nightExpMax && currentLight == nightLightMax && currentBleed == nightBleedMax)
-                    {
-                        for(i = 2; i <= 8; i++)
-                        {
-                            p setclientdvar("vc_yl", "0 0 0." + i + " 0");
-                            wait 0.15;
-                        }
-                        break;
-                    }
-                    wait 0.005;
-                }
-            }
-
-            
-            idxDay = randomintrange(1, 24);
-
-            if (currentBleed == nightBleedMax && currentLight == nightLightMax && currentExp == nightExpMax && idxDay == 12)
-            {
-                for(;;)
-                {
-                    currentBleed -= 0.1;
-                    currentLight -= 0.1;
-                    currentExp -= 0.05;
-
-                    if (currentExp < dayExpMin) currentExp = dayExpMin;
-                    if (currentLight < dayLightMin) currentLight = dayLightMin;
-                    if (currentBleed < dayBleedMin) currentBleed = dayBleedMin;
-
-                    p apply_night_vision_exposure(currentExp);
-                    p setclientdvar("r_lightTweakSunLight", currentLight);
-                    p setclientdvar("r_sky_intensity_factor0", currentBleed);
-
-                    if (currentExp == dayExpMin && currentLight == dayLightMin && currentBleed == dayBleedMin)
-                    {
-                        for(j = 8; j >= 1; j--)
-                        {
-                            p setclientdvar("vc_yl", "0 0 0." + j + " 0");
-                            wait 0.2;
-                        }
-                        break;
-                    }
-
-                    wait 0.005;
-                }
-            }
-        }
-
-        wait 13;
     }
 }
 
