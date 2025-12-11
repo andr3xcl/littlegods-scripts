@@ -2233,7 +2233,7 @@ load_night_mode_config()
                 }
             }
             
-            self iPrintln("Config Found: " + state + " F:" + filter + " V:" + nightvalue);
+            
 
             
             self.fog = fog;
@@ -2279,19 +2279,19 @@ load_night_mode_config()
                 {
                     self.nightfix = 1; 
                     self setclientdvar("r_exposureValue", nightvalue);
-                    self iPrintln("Loaded saved darkness: " + nightvalue);
+                    
                 }
             }
             else 
             {
-                 self iPrintln("Unknown state: " + state);
+                 //self iPrintln("Unknown state: " + state)
             }
         }
     }
     
     if (!loaded)
     {
-        self iPrintln("No valid config. Defaulting to disabled.");
+    
         self.nm_state = "disabled";
         self.nm_filter = 0;
         self.nm_value = 0;
